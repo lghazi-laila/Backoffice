@@ -1,0 +1,9 @@
+.inline-container {
+    display: flex;
+    align-items: center;
+}
+
+nz-select {
+    margin-left: 8px;
+    margin-right: 8px;
+}

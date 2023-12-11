@@ -1,0 +1,110 @@
+
+<nz-input-group nzPrefixIcon="search">
+  <input [(ngModel)]="searchInput" nz-input placeholder="Search" (input)="search(searchInput)"/>
+</nz-input-group>
+
+<nz-table #sortTable nzBordered 
+[nzData]="listOfUsers" 
+nzTableLayout="fixed" 
+[nzPageSize]="pageSize" 
+[nzPageIndex]="currentPage + 1" 
+[nzTotal]="totalPages"
+nzShowSizeChanger
+(nzPageSizeChange)="changePageSize($event)"
+(nzPageIndexChange)="changePageIndex($event)">
+  <thead>
+    <tr>
+      <th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [nzSortPriority]="column.priority"
+        (nzSortOrderChange)="sort($event, column)">
+        {{ column.title }}
+      </th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of listOfUsers">
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.userName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.creationDate | date: 'dd-MM-yyyy'}}</td>
+        <td>
+          <nz-tag [nzColor]="user.active ? 'green' : 'red'">
+            {{ user.active ? 'Active' : 'Inactive' }}
+          </nz-tag>
+          {{ user.active}}
+        </td>
+        <td>
+          <a nz-icon nzType="edit" nzTheme="fill" (click)="navigateToEditUser(user.id)"></a>
+        </td>
+        <td>
+          <!--<nz-divider nzType="vertical"></nz-divider>-->
+          <a nz-icon nzType="delete" nzTheme="fill" (click)="deleteUserWithId(user.id)"></a>
+        </td>      
+    </tr>
+  </tbody>
+</nz-table>
+
+
+
+<!--
+<nz-table #sortTable #editRowTable nzBordered [nzData]="listOfUsers" nzTableLayout="fixed">
+  <thead>
+    <tr>
+      <th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [nzSortPriority]="column.priority"
+        (nzSortOrderChange)="sort($event, column)">
+        {{ column.title }}
+      </th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of listOfUsers">
+      <ng-container *ngIf="!editCache[user.id].edit; else editTemplate">
+
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.userName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.creationDate | date: 'dd-MM-yyyy'}}</td>
+        <td>
+          <nz-tag [nzColor]="user.active ? 'green' : 'red'">
+            {{ user.active ? 'Active' : 'Inactive' }}
+          </nz-tag>
+          {{ user.active}}
+        </td>
+        <td>
+          <a nz-icon nzType="edit" nzTheme="fill" (click)="startEdit(user.id)"></a>
+        </td>
+        <td>
+          <a nz-icon nzType="delete" nzTheme="fill" (click)="deleteUserWithId(user.id)"></a>
+        </td>
+      </ng-container>
+
+      <ng-template #editTemplate>
+        <td><input type="text" nz-input [(ngModel)]="editCache[user.id].data.firstName" /></td>
+        <td><input type="text" nz-input [(ngModel)]="editCache[user.id].data.lastName" /></td>
+        <td><input type="text" nz-input [(ngModel)]="editCache[user.id].data.userName" /></td>
+        <td><input type="text" nz-input [(ngModel)]="editCache[user.id].data.email" /></td>
+        <td>{{ user.creationDate | date: 'dd-MM-yyyy'}}</td>
+        <td>
+          <nz-select nz-input [(ngModel)]="editCache[user.id].data.active">
+            <nz-option nzValue="true" nzLabel="true"></nz-option>
+            <nz-option nzValue="false" nzLabel="false"></nz-option>
+          </nz-select>
+        </td>
+        <td>
+          <a (click)="saveEdit(user.id)" class="save">Save</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="cancelEdit(user.id)">Cancel</a>
+        </td>
+        <td>
+          <a nz-icon nzType="delete" nzTheme="fill" style="color: gray;"></a>
+        </td>
+      </ng-template>
+    </tr>
+  </tbody>
+</nz-table>
+-->
