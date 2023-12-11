@@ -61,7 +61,9 @@ export class UsersListPageComponent {
 
   currentPage: number = 0;
 
-  totalPages: number = 0;
+  totalPages: number = 10;
+
+  totalElements: number = 0;
 
   constructor(private userService:UserService, private router: Router){}
   
@@ -71,12 +73,13 @@ export class UsersListPageComponent {
   }
 
   getAllUsers():void{
-    this.userService.getWithPagination(this.pageSize).subscribe(
+    this.userService.getWithPagination(this.currentPage, this.pageSize).subscribe(
       (response : any)=>{
         if (response && response.data && response.data.content) {
-          this.listOfUsers = response.data.content;  
-          this.currentPage = response.data.pageable.pageNumber;
-          this.totalPages = response.data.totalPages;    
+          this.listOfUsers = response.data.content;
+          this.totalElements = response.data.totalElements;  
+          //this.currentPage = response.data.pageable.pageNumber;
+          //this.totalPages = response.data.totalPages;    
           console.log(response);
           console.log("total pages: ", this.totalPages, "current page :", this.currentPage);
           
@@ -181,6 +184,8 @@ export class UsersListPageComponent {
 
   changePageIndex($event: number) {
     console.log($event);
+    this.currentPage = $event - 1;
+    this.getAllUsers();
   }
 
 /* Edit

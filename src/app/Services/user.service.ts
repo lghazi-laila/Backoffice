@@ -26,9 +26,9 @@ export class UserService {
     return this.httpClient.get<User[]>(this.url+'/all')
   }
 
-  public getWithPagination(pageSize: number): Observable<User[]>{
+  public getWithPagination(page:number, pageSize: number): Observable<User[]>{
     const headers = this.getToken();
-    return this.httpClient.get<User[]>(`${this.url}?pageSize=${pageSize}`, {headers});
+    return this.httpClient.get<User[]>(`${this.url}?page=${page}&pageSize=${pageSize}`, {headers});
   }
 
   public getUserWithId(Id: string){

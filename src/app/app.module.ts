@@ -28,6 +28,8 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+
 
 
 
@@ -62,7 +64,8 @@ registerLocaleData(en);
     NzSelectModule,
     NzPopoverModule,
     NzDropDownModule,
-    NzPaginationModule 
+    NzPaginationModule,
+    NzDatePickerModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }

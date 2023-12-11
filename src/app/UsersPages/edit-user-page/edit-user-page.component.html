@@ -1,1 +1,58 @@
 <p>edit-user-page works!</p>
+<form nz-form [formGroup]="userDetailsForm" (ngSubmit)="testFunction()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="firstName">First Name</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid name">
+        <input nz-input formControlName="firstName" id="firstName" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="lastName">Last Name</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid name">
+          <input nz-input formControlName="lastName" id="lastName" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid name">
+          <input nz-input formControlName="email" id="email" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="userName" nzRequired >
+        <span>User Name</span>
+      </nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your nickname!">
+        <input nz-input id="userName" formControlName="userName" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="creationDate" nzRequired>creation Date</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-date-picker [(ngModel)]="testFunction" (ngModelChange)="testFunction()"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="lastLogin" nzRequired>Last Login</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <nz-date-picker [(ngModel)]="testFunction" (ngModelChange)="testFunction()"></nz-date-picker>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="lastLogin" nzRequired>Last Login</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <nz-date-picker [(ngModel)]="testFunction" (ngModelChange)="testFunction()"></nz-date-picker>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="lastLogin" nzRequired>Last Login</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+            <nz-radio-group [(ngModel)]="testFunction">
+                <label nz-radio nzValue="A">A</label>
+                <label nz-radio nzValue="B">B</label>
+                <label nz-radio nzValue="C">C</label>
+                <label nz-radio nzValue="D">D</label>
+              </nz-radio-group>
+        </nz-form-control>
+    </nz-form-item>
+  </form>

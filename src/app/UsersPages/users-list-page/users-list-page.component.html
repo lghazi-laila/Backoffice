@@ -1,17 +1,18 @@
 
-<nz-input-group nzPrefixIcon="search">
+<nz-input-group nzPrefixIcon="search" class="search">
   <input [(ngModel)]="searchInput" nz-input placeholder="Search" (input)="search(searchInput)"/>
 </nz-input-group>
-
-<nz-table #sortTable nzBordered 
-[nzData]="listOfUsers" 
-nzTableLayout="fixed" 
+<!--
 [nzPageSize]="pageSize" 
-[nzPageIndex]="currentPage + 1" 
+[nzPageIndex]="currentPage" 
 [nzTotal]="totalPages"
-nzShowSizeChanger
-(nzPageSizeChange)="changePageSize($event)"
-(nzPageIndexChange)="changePageIndex($event)">
+-->
+
+<nz-table #sortTable nzBordered nzPaginationType="small"
+[nzData]="listOfUsers" 
+nzTableLayout="fixed"
+[nzShowPagination]="false" 
+>
   <thead>
     <tr>
       <th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [nzSortPriority]="column.priority"
@@ -44,6 +45,17 @@ nzShowSizeChanger
         </td>      
     </tr>
   </tbody>
+</nz-table>
+
+<nz-table #basicTable nzTableLayout="fixed" [nzShowPagination]="false">
+  <nz-pagination
+  [nzPageIndex]="currentPage + 1"
+  [nzTotal]="totalElements"
+  [nzPageSize]="pageSize"
+  nzShowSizeChanger
+  (nzPageSizeChange)="changePageSize($event)"
+  (nzPageIndexChange)="changePageIndex($event)"
+></nz-pagination>
 </nz-table>
 
 

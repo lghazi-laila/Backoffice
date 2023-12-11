@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -9,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditUserPageComponent implements OnInit{
   userId: string = "";
+  userDetailsForm!: FormGroup<any>;
 
   constructor(private route: ActivatedRoute) {}
 
@@ -16,8 +18,11 @@ export class EditUserPageComponent implements OnInit{
     this.route.params.subscribe(params => {
       this.userId = params['id'];
       console.log('userId: ', this.userId);
-      
     });
+  }
+
+  testFunction():void{
+
+  }
 }
 
-}
